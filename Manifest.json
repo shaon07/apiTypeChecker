@@ -1,0 +1,11 @@
+{
+  "name": "IoDean",
+  "version": "1.0.0",
+  "description": "An Alternative of POSTMAN. Define Auto Type from API Response",
+  "manifest_version": 3,
+  "author": "MD SHAMIRUL ISLAM",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Generate API Response Auto Type"
+  }
+}
