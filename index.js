@@ -9,7 +9,6 @@ const mainUrl = document.getElementById("mainUrl");
 const authKey = document.getElementById("authKey");
 const payload = document.getElementById("payload");
 
-console.log(authKey);
 
 const defaultEndPoint =
   mainUrl.value || "https://jsonplaceholder.typicode.com/users"; // dummy object data structure
@@ -201,6 +200,7 @@ copyBtn.onclick = () => {
 
 sendBtn.onclick = () => {
   sendBtn.innerText = "Sending";
+  sendBtn.setAttribute("disabled", true);
   payloadData.headers.authorization = authKey.value;
 
   fetch(mainUrl.value || defaultEndPoint, payloadData)
@@ -214,6 +214,8 @@ sendBtn.onclick = () => {
     .then((json) => {
       rootWrapper.style.display = "block";
       sendBtn.innerText = "Send";
+      sendBtn.setAttribute("disabled", false);
+
       const checkPagination = !!json.total ? "" : "";
       const checkMainDataType = Array.isArray(json);
       const mainData = !!json.total
@@ -222,7 +224,6 @@ sendBtn.onclick = () => {
         ? json
         : [json];
 
-      console.log(!checkMainDataType);
 
       var editor = CodeMirror(document.querySelector("#my-div"), {
         lineNumbers: true,
@@ -256,5 +257,3 @@ sendBtn.onclick = () => {
       sendBtn.innerText = "Send";
     });
 };
-
-// console.log(getDataType("hello world"));
