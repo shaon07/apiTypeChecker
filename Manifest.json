@@ -6,6 +6,25 @@
   "author": "MD SHAMIRUL ISLAM",
   "action": {
     "default_popup": "index.html",
-    "default_title": "Generate API Response Auto Type"
-  }
+    "default_title": "Generate API Response Auto Type",
+    "default_icon": "logo.png"
+  },
+  "icons": {
+    "16": "logo.svg",
+    "32": "logo.svg",
+    "48": "logo.svg",
+    "128": "logo.svg"
+  },
+  "browser_action": {
+    "default_icon": "logo.svg",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"
+      ],
+      "js": ["index.js"]
+    }
+  ]
 }
