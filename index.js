@@ -9,7 +9,6 @@ const mainUrl = document.getElementById("mainUrl");
 const authKey = document.getElementById("authKey");
 const payload = document.getElementById("payload");
 
-
 const defaultEndPoint =
   mainUrl.value || "https://jsonplaceholder.typicode.com/users"; // dummy object data structure
 const payloadData = {
@@ -84,9 +83,19 @@ function getObjectPropertyTypes(obj, check, checkMainDataType) {
     const propertyType = typeof obj[property];
     propertyTypes[property] = propertyType;
 
-    if (propertyType === "object" && !Array.isArray(obj[property])) {
+    if (obj[property] == null) {
+      propertyTypes[property] = null;
+    } else if (
+      propertyType === "object" &&
+      !Array.isArray(obj[property]) &&
+      obj[property] !== null
+    ) {
       propertyTypes[property] = getObjectPropertyTypes(obj[property]);
-    } else if (propertyType === "object" && Array.isArray(obj[property])) {
+    } else if (
+      propertyType === "object" &&
+      Array.isArray(obj[property]) &&
+      obj[property] !== null
+    ) {
       if (obj[property].length > 0) {
         propertyTypes[property] = getArrayValueTypes(
           obj[property],
@@ -136,6 +145,8 @@ const handleTypeOf = (data) => {
     return "boolean";
   } else if (typeof data === "number") {
     return "number";
+  } else if (typeof data === "object" && !Array.isArray(data) && data == null) {
+    return "null";
   } else if (typeof data === "object" && !Array.isArray(data)) {
     return "object";
   } else if (typeof data === "object" && Array.isArray(data)) {
@@ -154,6 +165,9 @@ function getDataType(data, checkAllArray = false, checkMainDataType) {
 
     case "number":
       return "number";
+
+    case "null":
+      return "null";
 
     case "array":
       return getArrayValueTypes(data, checkAllArray, checkMainDataType);
@@ -224,7 +238,6 @@ sendBtn.onclick = () => {
         ? json
         : [json];
 
-
       var editor = CodeMirror(document.querySelector("#my-div"), {
         lineNumbers: true,
         tabSize: 2,
@@ -233,7 +246,6 @@ sendBtn.onclick = () => {
         mode: "javascript",
         theme: "monokai",
       });
-
 
       // version 2
       // const dd = JSON.stringify(getTypes(json));
