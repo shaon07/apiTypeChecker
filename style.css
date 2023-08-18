@@ -2,6 +2,24 @@
   font-family: "Fira Sans", sans-serif;
 }
 
+.editor-container {
+  width: 900px;
+  height: 540px;
+  margin: 20px auto;
+  position: relative;
+}
+
+#editor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+}
+
 #root-wrapper {
   display: none;
 }
@@ -11,6 +29,7 @@
   color: white;
   padding: 2rem;
 }
+
 .copy-btn {
   top: 1rem;
   right: 2rem;
